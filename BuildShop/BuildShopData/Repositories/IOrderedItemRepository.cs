@@ -1,6 +1,4 @@
-﻿using BuildShopPresentationLayer.Implementations;
-
-namespace BuildShopDataAccessLayer.Repositories
+﻿namespace BuildShopDataAccessLayer.Repositories
 {
     public interface IOrderedItemRepository : IBaseRepository<OrderedItem>
     {

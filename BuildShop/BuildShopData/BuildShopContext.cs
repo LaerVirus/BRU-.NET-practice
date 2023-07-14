@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BuildShopPresentationLayer
+namespace BuildShopDataAccessLayer
 {
     public partial class BuildShopContext : DbContext
     {

@@ -2,7 +2,7 @@
 using BuildShopPresentationLayer;
 using Microsoft.EntityFrameworkCore;
 
-namespace BuildShopPresentationLayer.Implementations
+namespace BuildShopDataAccessLayer.Implementations
 {
     public class OrderRepository : IOrderRepository
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BuildShopPresentationLayer
+namespace BuildShopDataAccessLayer
 {
     public partial class Item
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int Category { get; set; }
         public string Name { get; set; } = null!;
         public int Count { get; set; }

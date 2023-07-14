@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using BuildShopDataAccessLayer.Repositories;
+using Microsoft.EntityFrameworkCore;
 
-namespace BuildShopPresentationLayer.Implementations
+namespace BuildShopDataAccessLayer.Implementations
 {
-    public class DeliveriRepository : IDeliveriRepository
+    public class DeliveriRepository : IDeliveryRepository
     {
         private readonly BuildShopContext _context;
 
@@ -21,7 +19,7 @@ namespace BuildShopPresentationLayer.Implementations
                 return Task.FromResult(false);
             }
 
-            _context.Deliveri.Add(entity);
+            _context.Delivery.Add(entity);
 
             return Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
@@ -33,22 +31,22 @@ namespace BuildShopPresentationLayer.Implementations
                 return Task.FromResult(false);
             }
 
-            _context.Deliveri.Remove(entity);
+            _context.Delivery.Remove(entity);
 
             return Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
 
-        public Task<List<Deliveri>> GetAll()
+        public Task<List<Delivery>> GetAll()
         {
-            return _context.Deliveri.ToListAsync();
+            return _context.Delivery.ToListAsync();
         }
 
-        public Task<Deliveri> GetById(Guid id)
+        public Task<Delivery> GetById(Guid id)
         {
-            return _context.Deliveri.FirstOrDefaultAsync(x => x.Id == id);
+            return _context.Delivery.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<bool> Update(Deliveri entity)
+        public Task<bool> Update(Delivery entity)
         {
             if (entity == null)
             {

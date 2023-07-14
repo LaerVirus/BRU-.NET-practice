@@ -1,7 +1,7 @@
 ﻿using BuildShopPresentationLayer;
 using Microsoft.EntityFrameworkCore;
 
-namespace BuildShopPresentationLayer.Implementations
+namespace BuildShopDataAccessLayer.Implementations
 {
     public class OrderedItemRepository : IOrderedItemRepository
     {
@@ -43,7 +43,7 @@ namespace BuildShopPresentationLayer.Implementations
 
         public Task<OrderedItem> GetById(Guid id)
         {
-            return _context.OrderedItems.FirstOrDefaultAsync(x => x.Id == id);
+            return _context.OrderedItems.FirstOrDefaultAsync(x => x.OrderId == id);
         }
 
         public Task<bool> Update(OrderedItem entity)

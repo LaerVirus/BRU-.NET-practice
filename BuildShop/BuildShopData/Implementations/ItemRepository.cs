@@ -1,11 +1,7 @@
-﻿using BuildShopPresentationLayer;
-using BuildShopPresentationLayer.Repositories;
+﻿using BuildShopDataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace BuildShopPresentationLayer.Implementations
+namespace BuildShopDataAccessLayer.Implementations
 {
     public class ItemRepository : IItemRepository
     {

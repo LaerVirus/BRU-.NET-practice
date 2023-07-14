@@ -1,6 +1,4 @@
-﻿using BuildShopBusinessAccessLayer;
-
-namespace BuildShopDataAccessLayer.Repositories
+﻿namespace BuildShopDataAccessLayer.Repositories
 {
     public interface IItemRepository : IBaseRepository<Item>
     {
