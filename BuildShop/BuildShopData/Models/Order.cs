@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BuildShopPresentationLayer
+namespace BuildShopDataAccessLayer
 {
     public partial class Order
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string ClientMobilePhone { get; set; } = null!;
         public string PaymentMethod { get; set; } = null!;
     }

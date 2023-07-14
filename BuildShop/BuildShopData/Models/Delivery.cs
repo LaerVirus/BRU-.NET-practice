@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BuildShopPresentationLayer
+namespace BuildShopDataAccessLayer
 {
     public partial class Delivery
     {
-        public int OrderedId { get; set; }
+        public Guid OrderedId { get; set; }
         public string Address { get; set; } = null!;
 
         public virtual Order Ordered { get; set; } = null!;

@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BuildShopDataAccessLayer
+namespace BuildShopPresentationLayer
 {
     public partial class BuildShopContext : DbContext
     {
         public BuildShopContext()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
         }
 
-        public BuildShopContext(DbContextOptions<BuildShopContext> options): base(options)
+        public BuildShopContext(DbContextOptions<BuildShopContext> options)
+            : base(options)
         {
         }
 
@@ -27,7 +26,7 @@ namespace BuildShopDataAccessLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=VirtualLaboratoryInPhysics;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=(LocalDB)\\MSSQLLocalDB;Database=BuildShop;Trusted_Connection=True;");
             }
         }
 
