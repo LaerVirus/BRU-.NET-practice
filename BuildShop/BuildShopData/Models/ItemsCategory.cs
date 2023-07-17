@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BuildShopPresentationLayer
+namespace BuildShopDataAccessLayer
 {
     public partial class ItemsCategory
     {
@@ -10,7 +10,7 @@ namespace BuildShopPresentationLayer
             Items = new HashSet<Item>();
         }
 
-        public int Id { get; set; }
+        public int Guid { get; set; }
         public string Name { get; set; } = null!;
 
         public virtual ICollection<Item> Items { get; set; }
