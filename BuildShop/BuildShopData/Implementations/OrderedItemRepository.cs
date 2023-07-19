@@ -1,4 +1,4 @@
-﻿using BuildShopPresentationLayer;
+﻿using BuildShopDataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace BuildShopDataAccessLayer.Implementations

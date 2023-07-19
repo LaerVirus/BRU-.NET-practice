@@ -3,47 +3,47 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BuildShopDataAccessLayer.Implementations
 {
-    public class DeliveriRepository : IDeliveryRepository
+    public class DeliveryRepository : IDeliveryRepository
     {
         private readonly BuildShopContext _context;
 
-        public DeliveriRepository(BuildShopContext context)
+        public DeliveryRepository(BuildShopContext context)
         {
             _context = context;
         }
 
-        public Task<bool> Create(DeliveriRepository entity)
+        public Task<bool> Create(Delivery entity)
         {
             if (entity == null)
             {
                 return Task.FromResult(false);
             }
 
-            _context.Delivery.Add(entity);
+            _context.Deliveries.Add(entity);
 
             return Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
 
-        public Task<bool> Delete(DeliveriRepository entity)
+        public Task<bool> Delete(Delivery entity)
         {
             if (entity == null)
             {
                 return Task.FromResult(false);
             }
 
-            _context.Delivery.Remove(entity);
+            _context.Deliveries.Remove(entity);
 
             return Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
 
         public Task<List<Delivery>> GetAll()
         {
-            return _context.Delivery.ToListAsync();
+            return _context.Deliveries.ToListAsync();
         }
 
         public Task<Delivery> GetById(Guid id)
         {
-            return _context.Delivery.FirstOrDefaultAsync(x => x.Id == id);
+            return _context.Deliveries.FirstOrDefaultAsync(x => x.OrderedId == id);
         }
 
         public Task<bool> Update(Delivery entity)
@@ -53,7 +53,9 @@ namespace BuildShopDataAccessLayer.Implementations
                 return Task.FromResult(false);
             }
 
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+			_context.Deliveries.Update(entity);
+
+			return Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
     }
 }

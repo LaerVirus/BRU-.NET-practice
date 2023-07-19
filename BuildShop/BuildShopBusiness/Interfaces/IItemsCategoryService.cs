@@ -1,4 +1,4 @@
-﻿using BuildShopPresentationLayer;
+﻿using BuildShopDataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,7 @@ namespace BuildShopBusinessAccessLayer
 {
     public interface IItemsCategoryService
     {
-        Task<IEnumerable<ItemsCategory>> GetItemsCategoriesAsync();
-    }
+        Task<IEnumerable<ItemsCategory>> GetAll();
+        Task<bool> Create(ItemsCategory itemsCategory);
+	}
 }

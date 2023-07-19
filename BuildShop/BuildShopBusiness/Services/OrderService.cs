@@ -1,4 +1,5 @@
-﻿using BuildShopPresentationLayer;
+﻿using BuildShopDataAccessLayer;
+using BuildShopDataAccessLayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace BuildShopBusinessAccessLayer
             _orderRepository = orderRepository;
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersAsync()
+        public async Task<IEnumerable<Order>> GetAll()
         {
-            return await _orderRepository.GetAllAsync();
+            return await _orderRepository.GetAll();
         }
 
         // other methods for CRUD operations

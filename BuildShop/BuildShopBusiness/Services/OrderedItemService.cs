@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BuildShopPresentationLayer;
+using BuildShopDataAccessLayer;
+using BuildShopDataAccessLayer.Repositories;
 
 namespace BuildShopBusinessAccessLayer
 {
@@ -17,9 +18,9 @@ namespace BuildShopBusinessAccessLayer
             _orderedItemRepository = orderedItemRepository;
         }
 
-        public async Task<IEnumerable<OrderedItem>> GetOrderedItemsAsync()
+        public async Task<IEnumerable<OrderedItem>> GetAll()
         {
-            return await _orderedItemRepository.GetAllAsync();
+            return await _orderedItemRepository.GetAll();
         }
 
         // other methods for CRUD operations

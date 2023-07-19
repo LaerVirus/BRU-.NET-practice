@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BuildShopBusinessAccessLayer;
+using BuildShopDataAccessLayer;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BuildShopPresentationLayer.Controllers
 {
@@ -22,54 +24,54 @@ namespace BuildShopPresentationLayer.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet]
-		[ProducesResponseType(typeof(Delivery), StatusCodes.Status200OK)]
-		[Route("[controller]/{id}")]
-		public async Task<IActionResult> GetById([FromBody] int id)
-		{
-			var result = await _service.GetById(id);
+		//[HttpGet]
+		//[ProducesResponseType(typeof(Delivery), StatusCodes.Status200OK)]
+		//[Route("[controller]/{id}")]
+		//public async Task<IActionResult> GetById([FromBody] int id)
+		//{
+		//	var result = await _service.GetById(id);
 			
-			return Ok(result);
-		}
+		//	return Ok(result);
+		//}
 
-		[HttpPost]
-		[ProducesResponseType(typeof(Delivery), StatusCodes.Status200OK)]
-		[Route("[controller]/create")]
-		public async Task<IActionResult> Create([FromBody] Delivery delivery)
-		{
-			if (delivery is null || !ModelState.IsValid)
-			{
-				return BadRequest("Invalid model");
-			}
+		//[HttpPost]
+		//[ProducesResponseType(typeof(Delivery), StatusCodes.Status200OK)]
+		//[Route("[controller]/create")]
+		//public async Task<IActionResult> Create([FromBody] Delivery delivery)
+		//{
+		//	if (delivery is null || !ModelState.IsValid)
+		//	{
+		//		return BadRequest("Invalid model");
+		//	}
 
-			var result = await _service.Create(delivery);
+		//	var result = await _service.Create(delivery);
 
-			return Ok(result);
-		}
+		//	return Ok(result);
+		//}
 
-		[HttpPut]
-		[ProducesResponseType(typeof(Delivery), StatusCodes.Status200OK)]
-		[Route("[controller]/update")]
-		public async Task<IActionResult> Update([FromBody] Delivery delivery)
-		{
-			if (delivery is null || !ModelState.IsValid)
-			{
-				return BadRequest("Invalid model");
-			}
+		//[HttpPut]
+		//[ProducesResponseType(typeof(Delivery), StatusCodes.Status200OK)]
+		//[Route("[controller]/update")]
+		//public async Task<IActionResult> Update([FromBody] Delivery delivery)
+		//{
+		//	if (delivery is null || !ModelState.IsValid)
+		//	{
+		//		return BadRequest("Invalid model");
+		//	}
 
-			var result = await _service.Update(delivery);
+		//	var result = await _service.Update(delivery);
 
-			return Ok(result);
-		}
+		//	return Ok(result);
+		//}
 
-		[HttpDelete]
-		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		[Route("[controller]/delete")]
-		public async Task<IActionResult> Delete([FromBody] int id)
-		{
-			var result = await _service.Delete(id);
+		//[HttpDelete]
+		//[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		//[Route("[controller]/delete")]
+		//public async Task<IActionResult> Delete([FromBody] int id)
+		//{
+		//	var result = await _service.Delete(id);
 
-			return Ok(result);
-		}
+		//	return Ok(result);
+		//}
 	}
 }

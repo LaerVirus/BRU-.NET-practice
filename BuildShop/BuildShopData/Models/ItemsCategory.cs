@@ -10,7 +10,7 @@ namespace BuildShopDataAccessLayer
             Items = new HashSet<Item>();
         }
 
-        public int Guid { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; } = null!;
 
         public virtual ICollection<Item> Items { get; set; }

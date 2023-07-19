@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using BuildShopPresentationLayer;
-using Microsoft.EntityFrameworkCore;
+﻿using BuildShopDataAccessLayer;
+using BuildShopDataAccessLayer.Repositories;
 
 namespace BuildShopBusinessAccessLayer
 {
@@ -18,11 +12,18 @@ namespace BuildShopBusinessAccessLayer
             _deliveryRepository = deliveryRepository;
         }
 
-        public async Task<IEnumerable<Delivery>> GetDeliveriesAsync()
+        public async Task<IEnumerable<Delivery>> GetAll()
         {
-            return await _deliveryRepository.GetAllAsync();
+            return await _deliveryRepository.GetAll();
         }
 
-        // other methods for CRUD operations
-    }
+        public async Task<Delivery> GetById(int orderId)
+        {
+
+        }
+
+		Task<Delivery> Create(Delivery delivery);
+		Task<Delivery> Delete(int orderedid);
+		Task<Delivery> Update(Delivery delivery);
+	}
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BuildShopBusinessAccessLayer;
+using BuildShopDataAccessLayer;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BuildShopPresentationLayer.Controllers
 {
@@ -22,15 +24,15 @@ namespace BuildShopPresentationLayer.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet]
-		[ProducesResponseType(typeof(ItemsCategory), StatusCodes.Status200OK)]
-		[Route("[controller]/{id}")]
-		public async Task<IActionResult> GetById([FromBody] int id)
-		{
-			var result = await _service.GetById(id);
+		//[HttpGet]
+		//[ProducesResponseType(typeof(ItemsCategory), StatusCodes.Status200OK)]
+		//[Route("[controller]/{id}")]
+		//public async Task<IActionResult> GetById([FromBody] int id)
+		//{
+		//	var result = await _service.GetById(id);
 
-			return Ok(result);
-		}
+		//	return Ok(result);
+		//}
 
 		[HttpPost]
 		[ProducesResponseType(typeof(Delivery), StatusCodes.Status200OK)]
@@ -47,29 +49,29 @@ namespace BuildShopPresentationLayer.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut]
-		[ProducesResponseType(typeof(ItemsCategory), StatusCodes.Status200OK)]
-		[Route("[controller]/update")]
-		public async Task<IActionResult> Update([FromBody] ItemsCategory itemsCategory)
-		{
-			if (itemsCategory is null || !ModelState.IsValid)
-			{
-				return BadRequest("Invalid model");
-			}
+		//[HttpPut]
+		//[ProducesResponseType(typeof(ItemsCategory), StatusCodes.Status200OK)]
+		//[Route("[controller]/update")]
+		//public async Task<IActionResult> Update([FromBody] ItemsCategory itemsCategory)
+		//{
+		//	if (itemsCategory is null || !ModelState.IsValid)
+		//	{
+		//		return BadRequest("Invalid model");
+		//	}
 
-			var result = await _service.Update(itemsCategory);
+		//	var result = await _service.Update(itemsCategory);
 
-			return Ok(result);
-		}
+		//	return Ok(result);
+		//}
 
-		[HttpDelete]
-		[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-		[Route("[controller]/delete")]
-		public async Task<IActionResult> Delete([FromBody] int id)
-		{
-			var result = await _service.Delete(id);
+		//[HttpDelete]
+		//[ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+		//[Route("[controller]/delete")]
+		//public async Task<IActionResult> Delete([FromBody] int id)
+		//{
+		//	var result = await _service.Delete(id);
 
-			return Ok(result);
-		}
+		//	return Ok(result);
+		//}
 	}
 }

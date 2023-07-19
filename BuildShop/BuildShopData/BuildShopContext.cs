@@ -9,7 +9,6 @@ namespace BuildShopDataAccessLayer
     {
         public BuildShopContext()
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -27,7 +26,7 @@ namespace BuildShopDataAccessLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=VirtualLaboratoryInPhysics;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=BuildShop;Trusted_Connection=True;");
             }
         }
 

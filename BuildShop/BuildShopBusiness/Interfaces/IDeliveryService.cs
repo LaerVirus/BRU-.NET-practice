@@ -1,4 +1,4 @@
-﻿using BuildShopPresentationLayer;
+﻿using BuildShopDataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,10 @@ namespace BuildShopBusinessAccessLayer
 {
     public interface IDeliveryService
     {
-        Task<IEnumerable<Delivery>> GetDeliveriesAsync();
-
-    }
+        Task<IEnumerable<Delivery>> GetAll();
+		Task<Delivery> GetById(int orderId);
+		Task<Delivery> Create(Delivery delivery);
+		Task<Delivery> Delete(int orderId);
+		Task<Delivery> Update(Delivery delivery);
+	}
 }

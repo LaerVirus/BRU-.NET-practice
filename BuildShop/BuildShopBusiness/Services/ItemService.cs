@@ -1,4 +1,5 @@
-﻿using BuildShopPresentationLayer;
+﻿using BuildShopDataAccessLayer;
+using BuildShopDataAccessLayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,14 @@ namespace BuildShopBusinessAccessLayer
     {
         private readonly IItemRepository _itemRepository;
 
-        public DeliveryService(IItemRepository itemRepository)
+        public ItemService(IItemRepository itemRepository)
         {
             _itemRepository = itemRepository;
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync()
+        public async Task<IEnumerable<Item>> GetAll()
         {
-            return await _itemRepository.GetAllAsync();
+            return await _itemRepository.GetAll();
         }
 
         // other methods for CRUD operations
