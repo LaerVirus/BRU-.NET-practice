@@ -1,15 +1,9 @@
-﻿using BuildShopDataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BuildShopBusinessAccessLayer.Interfaces;
+using BuildShopDataAccessLayer;
 
 namespace BuildShopBusinessAccessLayer
 {
-    public interface IItemsCategoryService
+    public interface IItemsCategoryService : IBaseService<ItemsCategory>
     {
-        Task<IEnumerable<ItemsCategory>> GetAll();
-        Task<bool> Create(ItemsCategory itemsCategory);
 	}
 }

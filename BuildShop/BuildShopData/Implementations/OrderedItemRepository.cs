@@ -12,50 +12,45 @@ namespace BuildShopDataAccessLayer.Implementations
             _context = context;
         }
 
-        public Task<bool> Create(OrderedItem entity)
+        public async Task<bool> Create(OrderedItem entity)
         {
             if (entity == null)
             {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
             _context.OrderedItems.Add(entity);
 
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
 
-        public Task<bool> Delete(OrderedItem entity)
+        public async Task<bool> Delete(Guid id)
+        {
+            _context.OrderedItems.Remove(await GetById(id));
+
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
+        }
+
+        public async Task<List<OrderedItem>> GetAll()
+        {
+            return await _context.OrderedItems.ToListAsync();
+        }
+
+        public async Task<OrderedItem> GetById(Guid id)
+        {
+            return await _context.OrderedItems.FirstOrDefaultAsync(x => x.OrderId == id);
+        }
+
+        public async Task<bool> Update(OrderedItem entity)
         {
             if (entity == null)
             {
-                return Task.FromResult(false);
-            }
-
-            _context.OrderedItems.Remove(entity);
-
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
-        }
-
-        public Task<List<OrderedItem>> GetAll()
-        {
-            return _context.OrderedItems.ToListAsync();
-        }
-
-        public Task<OrderedItem> GetById(Guid id)
-        {
-            return _context.OrderedItems.FirstOrDefaultAsync(x => x.OrderId == id);
-        }
-
-        public Task<bool> Update(OrderedItem entity)
-        {
-            if (entity == null)
-            {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
             _context.OrderedItems.Update(entity);
 
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
     }
 }

@@ -1,15 +1,9 @@
-﻿using BuildShopDataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BuildShopBusinessAccessLayer.Interfaces;
+using BuildShopDataAccessLayer;
 
 namespace BuildShopBusinessAccessLayer
 {
-    public interface IOrderedItemService
+    public interface IOrderedItemService : IBaseService<OrderedItem>
     {
-        Task<IEnumerable<OrderedItem>> GetAll();
-
     }
 }

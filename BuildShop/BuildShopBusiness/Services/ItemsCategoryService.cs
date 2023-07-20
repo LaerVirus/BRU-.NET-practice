@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BuildShopDataAccessLayer;
+﻿using BuildShopDataAccessLayer;
 using BuildShopDataAccessLayer.Repositories;
 
 namespace BuildShopBusinessAccessLayer
 {
-    public class ItemsCategoryService : IItemsCategoryService
+	public class ItemsCategoryService : IItemsCategoryService
     {
         private readonly IItemsCategoryRepository _itemsCategoryRepository;
 
@@ -17,16 +12,34 @@ namespace BuildShopBusinessAccessLayer
             _itemsCategoryRepository = itemsCategoryRepository;
         }
 
-        public async Task<IEnumerable<ItemsCategory>> GetAll()
-        {
-            return await _itemsCategoryRepository.GetAll();
-        }
+		public async Task<IEnumerable<ItemsCategory>> GetAll()
+		{
+			return await _itemsCategoryRepository.GetAll();
+		}
 
-        public async Task<bool> Create(ItemsCategory itemsCategory)
-        {
-            return await _itemsCategoryRepository.Create(itemsCategory);
-        }
+		public async Task<ItemsCategory> GetById(Guid id)
+		{
+			var data = _itemsCategoryRepository.GetById(id);
+			if (data == null)
+			{
+				throw new Exception("Invalid id");
+			}
+			return await data;
+		}
 
-		// other methods for CRUD operations
+		public async Task<bool> Create(ItemsCategory entity)
+		{
+			return await _itemsCategoryRepository.Create(entity);
+		}
+
+		public async Task<bool> Delete(Guid id)
+		{
+			return await _itemsCategoryRepository.Delete(id);
+		}
+
+		public async Task<bool> Update(ItemsCategory entity)
+		{
+			return await _itemsCategoryRepository.Update(entity);
+		}
 	}
 }

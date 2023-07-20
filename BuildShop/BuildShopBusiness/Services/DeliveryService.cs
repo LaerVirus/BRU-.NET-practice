@@ -17,13 +17,29 @@ namespace BuildShopBusinessAccessLayer
             return await _deliveryRepository.GetAll();
         }
 
-        public async Task<Delivery> GetById(int orderId)
+        public async Task<Delivery> GetById(Guid id)
         {
+			var data = _deliveryRepository.GetById(id);
+			if (data == null)
+			{
+				throw new Exception("Invalid id");
+			}
+			return await data;
+		}
 
-        }
+		public async Task<bool> Create(Delivery entity)
+		{
+			return await _deliveryRepository.Create(entity);
+		}
 
-		Task<Delivery> Create(Delivery delivery);
-		Task<Delivery> Delete(int orderedid);
-		Task<Delivery> Update(Delivery delivery);
+		public async Task<bool> Delete(Guid id)
+		{
+			return await _deliveryRepository.Delete(id);
+		}
+
+		public async Task<bool> Update(Delivery entity)
+		{
+			return await _deliveryRepository.Update(entity);
+		}
 	}
 }

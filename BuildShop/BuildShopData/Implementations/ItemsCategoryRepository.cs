@@ -12,51 +12,46 @@ namespace BuildShopDataAccessLayer.Implementations
             _context = context;
         }
 
-        public Task<bool> Create(ItemsCategory entity)
+        public async Task<bool> Create(ItemsCategory entity)
         {
             if (entity == null)
             {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
             _context.ItemsCategories.Add(entity);
 
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
 
-        public Task<bool> Delete(ItemsCategory entity)
+        public async Task<bool> Delete(Guid id)
+        {
+            _context.ItemsCategories.Remove(await GetById(id));
+
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
+        }
+
+		public async Task<List<ItemsCategory>> GetAll()
+        {
+            return await _context.ItemsCategories.ToListAsync();
+        }
+
+        public async Task<ItemsCategory> GetById(Guid id)
+        {
+            return await _context.ItemsCategories.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+
+		public async Task<bool> Update(ItemsCategory entity)
         {
             if (entity == null)
             {
-                return Task.FromResult(false);
-            }
-
-            _context.ItemsCategories.Remove(entity);
-
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
-        }
-
-        public Task<List<ItemsCategory>> GetAll()
-        {
-            return _context.ItemsCategories.ToListAsync();
-        }
-
-        public Task<ItemsCategory> GetById(Guid id)
-        {
-            return _context.ItemsCategories.FirstOrDefaultAsync(x => x.Id == id);
-        }
-
-
-        public Task<bool> Update(ItemsCategory entity)
-        {
-            if (entity == null)
-            {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
             _context.ItemsCategories.Update(entity);
 
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
     }
 }

@@ -12,50 +12,45 @@ namespace BuildShopDataAccessLayer.Implementations
             _context = context;
         }
 
-        public Task<bool> Create(Order entity)
+        public async Task<bool> Create(Order entity)
         {
             if (entity == null)
             {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
             _context.Orders.Add(entity);
 
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
 
-        public Task<bool> Delete(Order entity)
+        public async Task<bool> Delete(Guid id)
+        {
+            _context.Orders.Remove(await GetById(id));
+
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
+        }
+
+        public async Task<List<Order>> GetAll()
+        {
+            return await _context.Orders.ToListAsync();
+        }
+
+        public async Task<Order> GetById(Guid id)
+        {
+            return await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<bool> Update(Order entity)
         {
             if (entity == null)
             {
-                return Task.FromResult(false);
-            }
-
-            _context.Orders.Remove(entity);
-
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
-        }
-
-        public Task<List<Order>> GetAll()
-        {
-            return _context.Orders.ToListAsync();
-        }
-
-        public Task<Order> GetById(Guid id)
-        {
-            return _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
-        }
-
-        public Task<bool> Update(Order entity)
-        {
-            if (entity == null)
-            {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
             _context.Orders.Update(entity);
 
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
     }
 }

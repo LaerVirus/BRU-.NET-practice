@@ -12,50 +12,45 @@ namespace BuildShopDataAccessLayer.Implementations
             _context = context;
         }
 
-        public Task<bool> Create(Delivery entity)
+        public async Task<bool> Create(Delivery entity)
         {
             if (entity == null)
             {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
             _context.Deliveries.Add(entity);
 
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
 
-        public Task<bool> Delete(Delivery entity)
+        public async Task<bool> Delete(Guid id)
+        {
+            _context.Deliveries.Remove(await GetById(id));
+
+            return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
+        }
+
+        public async Task<List<Delivery>> GetAll()
+        {
+            return await _context.Deliveries.ToListAsync();
+        }
+
+        public async Task<Delivery> GetById(Guid id)
+        {
+            return await _context.Deliveries.FirstOrDefaultAsync(x => x.OrderedId == id);
+        }
+
+        public async Task<bool> Update(Delivery entity)
         {
             if (entity == null)
             {
-                return Task.FromResult(false);
-            }
-
-            _context.Deliveries.Remove(entity);
-
-            return Task.FromResult(_context.SaveChangesAsync().Result != 0);
-        }
-
-        public Task<List<Delivery>> GetAll()
-        {
-            return _context.Deliveries.ToListAsync();
-        }
-
-        public Task<Delivery> GetById(Guid id)
-        {
-            return _context.Deliveries.FirstOrDefaultAsync(x => x.OrderedId == id);
-        }
-
-        public Task<bool> Update(Delivery entity)
-        {
-            if (entity == null)
-            {
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
 			_context.Deliveries.Update(entity);
 
-			return Task.FromResult(_context.SaveChangesAsync().Result != 0);
+			return await Task.FromResult(_context.SaveChangesAsync().Result != 0);
         }
     }
 }
